@@ -1,0 +1,27 @@
+<form [formGroup]="formClient" (ngSubmit)="submit()">
+<div class="form-group">
+<label for="nom">Nom </label>
+<input formControlName="ClientFirstName" class="form-control" type="text">
+</div>
+<div class="form-group">
+<label for="Prenom">Prénom </label>
+<input formControlName="ClientLastName" class="form-control" type="text">
+</div>
+<div class="form-group">
+<label for="Phone">Numéro de Téléohone</label>
+<input formControlName="ClientPhone" class="form-control" type="text">
+</div>
+<div class="form-group">
+<label for="Hotel">Hotel</label>
+
+<select formControlName="hotelId" class="form-control" name="hotel" id="hotel">
+    <option *ngFor="let d of listHotels" [value]="d?.id">{{ d?.hotelName }}</option>
+  </select>
+  
+
+<!--<input formControlName="hotelId" class="form-control" type="text">-->
+</div>
+<div class="form-group">
+<button type="submit" class="btn btn-outline-success mt-2">Envoyer</button>
+</div>
+</form>

@@ -1,0 +1,33 @@
+<table class="table table-hover table-striped" border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Hotel Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let hotel of hotels">
+        <td>{{ hotel.id }}</td>
+        <td>{{ hotel.hotelName }}</td>
+        <td><button (click)="onUpdate(hotel)" class="btn btn-primary">Update</button></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="hotelName">hotel Name:</label>
+      <input type="text" class="form-control" formControlName="hotelName">
+    </div>
+    <button type="submit" class="btn btn-primary">Add hotel</button>
+  </form>
+  
+  <div *ngIf="showUpdateForm">
+    <form [formGroup]="form" (ngSubmit)="onUpdateSubmit()">
+      <label for="hotelName">hotel Name:</label>
+      <input type="text" id="hotelName" formControlName="hotelName">
+      <button type="submit">Update</button>
+    </form>
+  </div>
+
+  

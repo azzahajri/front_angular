@@ -1,0 +1,54 @@
+<table class="table table-hover table-striped" border="1">
+    <thead>
+      <tr>
+        <th>Client ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Phone</th>
+        <th>hotel</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let client of listClients">
+        <td>{{ client.id }}</td>
+        <td>{{ client.clientFirstName }}</td> 
+        <td>{{ client.clientLastName }}</td>
+        <td>{{ client.clientPhone }}</td>
+        <td>{{ getHotelName(client.hotel.id) }}</td>
+        <td>
+          <button (click)="openEditForm(client)" class="btn btn-primary">Edit</button>
+          <button (click)="deleteClient(client)" class="btn btn-danger">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <div *ngIf="selectedClient" class="card">
+    <h2 class="card-header">Edit Client</h2>
+    <div class="card-body">
+      <form (ngSubmit)="submitEditForm()">
+        <div class="form-group">
+          <label for="firstName">First Name:</label>
+          <input id="firstName" [(ngModel)]="selectedClient.clientFirstName" name="clientFirstName" required class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name:</label>
+          <input id="lastName" [(ngModel)]="selectedClient.clientLastName" name="clientLastName" required class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone:</label>
+          <input id="phone" [(ngModel)]="selectedClient.clientPhone" name="clientPhone" required class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="department">Hotel:</label>
+          <select id="hotel" [(ngModel)]="selectedClient.hotel.id" name="hotel" required class="form-control">
+            <option *ngFor="let d of hotels" [value]="d.id">{{ d.hotelName  }}</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <button type="button" (click)="closeEditForm()" class="btn btn-secondary">Cancel</button>
+      </form>
+    </div>
+  </div>
+  
